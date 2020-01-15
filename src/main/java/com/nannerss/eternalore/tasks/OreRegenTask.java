@@ -2,13 +2,13 @@ package com.nannerss.eternalore.tasks;
 
 import java.util.Random;
 
+import com.nannerss.eternalore.lib.Particles;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import com.nannerss.bananalib.particles.Particles;
 import com.nannerss.eternalore.EternalOre;
 import com.nannerss.eternalore.data.Ore;
 import com.nannerss.eternalore.data.Settings;
