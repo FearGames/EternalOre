@@ -2,7 +2,6 @@ package com.nannerss.eternalore.data;
 
 import com.nannerss.eternalore.EternalOre;
 import com.nannerss.eternalore.lib.ConfigManager;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 
 import java.util.ArrayList;
@@ -16,7 +15,7 @@ public class Settings {
 
     public static Material WAND_MATERIAL;
     public static Material PLACEHOLDER_BLOCK;
-    public static List<Material> ORES = Arrays.asList(Material.STONE, Material.COBBLESTONE, Bukkit.getVersion().contains("1.13") || Bukkit.getVersion().contains("1.14") ? Material.valueOf("NETHER_QUARTZ_ORE") : Material.valueOf("QUARTZ_ORE"), Material.COAL_ORE, Material.IRON_ORE, Material.GOLD_ORE, Material.LAPIS_ORE, Material.REDSTONE_ORE, Material.DIAMOND_ORE, Material.EMERALD_ORE);
+    public static List<Material> ORES = Arrays.asList(Material.STONE, Material.COBBLESTONE, Material.NETHER_QUARTZ_ORE, Material.COAL_ORE, Material.IRON_ORE, Material.GOLD_ORE, Material.LAPIS_ORE, Material.REDSTONE_ORE, Material.DIAMOND_ORE, Material.EMERALD_ORE);
 
     public static Material STONE_DROP;
     public static int STONE_MAX_DROP_COUNT;
@@ -96,11 +95,7 @@ public class Settings {
 
         String LAPIS_DROP_NAME = cfg.getString("ores.lapis-ore.drop");
         if ("LAPIS_LAZULI".equals(LAPIS_DROP_NAME.toUpperCase())) {
-            if (Bukkit.getVersion().contains("1.13") || Bukkit.getVersion().contains("1.14")) {
-                LAPIS_DROP = Material.valueOf("LAPIS_LAZULI");
-            } else {
-                LAPIS_DROP = Material.valueOf("INK_SACK");
-            }
+            LAPIS_DROP = Material.LAPIS_LAZULI;
         } else {
             LAPIS_DROP = Material.valueOf(LAPIS_DROP_NAME);
         }
@@ -150,18 +145,12 @@ public class Settings {
                 final Material mat;
 
                 if ("NETHER_QUARTZ_ORE".equals(fixedName) || "QUARTZ_ORE".equals(fixedName)) {
-                    if (Bukkit.getVersion().contains("1.13") || Bukkit.getVersion().contains("1.14")) {
-                        mat = Material.valueOf("NETHER_QUARTZ_ORE");
-                    } else {
-                        mat = Material.valueOf("QUARTZ_ORE");
-                    }
+                    mat = Material.NETHER_QUARTZ_ORE;
                 } else {
                     mat = Material.valueOf(fixedName);
                 }
 
-                if (mat != null) {
-                    list.add(mat);
-                }
+                list.add(mat);
             } catch (final IllegalArgumentException e) {
                 throw new RuntimeException("Item " + raw + " is NOT a valid material!");
             }

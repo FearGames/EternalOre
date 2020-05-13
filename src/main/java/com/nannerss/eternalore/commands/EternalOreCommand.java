@@ -9,6 +9,7 @@ import com.nannerss.eternalore.lib.Particles;
 import com.nannerss.eternalore.lib.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
@@ -80,7 +81,7 @@ public class EternalOreCommand extends Command {
                                     cache.getLocation().getBlock().setType(Material.COBBLESTONE);
                                     break;
                                 case "QUARTZ_ORE":
-                                    cache.getLocation().getBlock().setType(Bukkit.getVersion().contains("1.13") || Bukkit.getVersion().contains("1.14") ? Material.valueOf("NETHER_QUARTZ_ORE") : Material.valueOf("QUARTZ_ORE"));
+                                    cache.getLocation().getBlock().setType(Material.NETHER_QUARTZ_ORE);
                                     break;
                                 case "COAL_ORE":
                                     cache.getLocation().getBlock().setType(Material.COAL_ORE);
@@ -112,17 +113,8 @@ public class EternalOreCommand extends Command {
 
                             for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
                                 if (cache.getLocation().distance(onlinePlayer.getLocation()) <= 100) {
-                                    if (!Bukkit.getVersion().contains("1.13") && !Bukkit.getVersion().contains("1.14")) {
-                                        Particles.spawnParticle(p, "BLOCK_CRACK", cache.getLocation().getBlockX() + 0.5F, cache.getLocation().getBlockY() + 0.5F, cache.getLocation().getBlockZ() + 0.5F, 0.25F, 0.25F, 0.25F, 0, 100, cache.getLocation().getBlock().getType().getId());
-                                    } else {
-                                        Particles.spawnParticle(p, "BLOCK_CRACK", cache.getLocation().getBlockX() + 0.5F, cache.getLocation().getBlockY() + 0.5F, cache.getLocation().getBlockZ() + 0.5F, 0.25F, 0.25F, 0.25F, 0, 100, cache.getLocation().getBlock().getBlockData());
-                                    }
-
-                                    if (Bukkit.getVersion().contains("1.8")) {
-                                        p.playSound(cache.getLocation(), Sound.valueOf("DIG_STONE"), 1F, 1F);
-                                    } else {
-                                        p.playSound(cache.getLocation(), Sound.valueOf("BLOCK_STONE_BREAK"), 1F, 1F);
-                                    }
+                                    Particles.spawnParticle(p, Particle.BLOCK_CRACK, cache.getLocation().getBlockX() + 0.5F, cache.getLocation().getBlockY() + 0.5F, cache.getLocation().getBlockZ() + 0.5F, 0.25F, 0.25F, 0.25F, 0, 100, cache.getLocation().getBlock().getBlockData());
+                                    p.playSound(cache.getLocation(), Sound.BLOCK_STONE_BREAK, 1F, 1F);
                                 }
                             }
 
@@ -150,7 +142,7 @@ public class EternalOreCommand extends Command {
                                     cache.getLocation().getBlock().setType(Material.COBBLESTONE);
                                     break;
                                 case "QUARTZ_ORE":
-                                    cache.getLocation().getBlock().setType(Bukkit.getVersion().contains("1.13") || Bukkit.getVersion().contains("1.14") ? Material.valueOf("NETHER_QUARTZ_ORE") : Material.valueOf("QUARTZ_ORE"));
+                                    cache.getLocation().getBlock().setType(Material.NETHER_QUARTZ_ORE);
                                     break;
                                 case "COAL_ORE":
                                     cache.getLocation().getBlock().setType(Material.COAL_ORE);
@@ -182,17 +174,8 @@ public class EternalOreCommand extends Command {
 
                             for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
                                 if (cache.getLocation().distance(onlinePlayer.getLocation()) <= 100) {
-                                    if (!Bukkit.getVersion().contains("1.13") && !Bukkit.getVersion().contains("1.14")) {
-                                        Particles.spawnParticle(p, "BLOCK_CRACK", cache.getLocation().getBlockX() + 0.5F, cache.getLocation().getBlockY() + 0.5F, cache.getLocation().getBlockZ() + 0.5F, 0.25F, 0.25F, 0.25F, 0, 100, cache.getLocation().getBlock().getType().getId());
-                                    } else {
-                                        Particles.spawnParticle(p, "BLOCK_CRACK", cache.getLocation().getBlockX() + 0.5F, cache.getLocation().getBlockY() + 0.5F, cache.getLocation().getBlockZ() + 0.5F, 0.25F, 0.25F, 0.25F, 0, 100, cache.getLocation().getBlock().getBlockData());
-                                    }
-
-                                    if (Bukkit.getVersion().contains("1.8")) {
-                                        p.playSound(cache.getLocation(), Sound.valueOf("DIG_STONE"), 1F, 1F);
-                                    } else {
-                                        p.playSound(cache.getLocation(), Sound.valueOf("BLOCK_STONE_BREAK"), 1F, 1F);
-                                    }
+                                    Particles.spawnParticle(p, Particle.BLOCK_CRACK, cache.getLocation().getBlockX() + 0.5F, cache.getLocation().getBlockY() + 0.5F, cache.getLocation().getBlockZ() + 0.5F, 0.25F, 0.25F, 0.25F, 0, 100, cache.getLocation().getBlock().getBlockData());
+                                    p.playSound(cache.getLocation(), Sound.BLOCK_STONE_BREAK, 1F, 1F);
                                 }
                             }
                         }

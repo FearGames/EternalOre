@@ -17,10 +17,6 @@ public class Messages {
         }
     }
 
-    public static void sendTitle(Player player, String title, String subtitle, int in, int stay, int out) {
-        player.sendTitle(Utils.colorize(title), Utils.colorize(subtitle), in, stay, out);
-    }
-
     public static void sendActionBar(final Player player, final String message) {
         player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(Utils.colorize(message)));
     }

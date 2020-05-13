@@ -8,12 +8,6 @@ import java.lang.reflect.Field;
 
 public class Registrar {
 
-    public static void registerCommands(final Command... cmds) {
-        for (final Command cmd : cmds) {
-            registerCommand(cmd);
-        }
-    }
-
     public static void registerCommand(final Command cmd) {
         try {
             final Field cmdMapField = Bukkit.getServer().getClass().getDeclaredField("commandMap");

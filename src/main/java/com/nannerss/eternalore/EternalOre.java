@@ -93,7 +93,7 @@ public class EternalOre extends JavaPlugin implements Listener {
     public void onWorldLoad(WorldLoadEvent event) {
         ConfigurationSection section = ores.getConfigurationSection("ores");
         for (String key : section.getKeys(false)) {
-            if(!key.startsWith(event.getWorld().getName() + "!")) {
+            if (!key.startsWith(event.getWorld().getName() + "!")) {
                 continue;
             }
             getCache(key);
@@ -104,7 +104,7 @@ public class EternalOre extends JavaPlugin implements Listener {
         Ore cache = oresCache.getIfPresent(id);
         if (cache == null) {
             String worldName = id.split("!")[0];
-            if(Bukkit.getWorld(worldName) == null) {
+            if (Bukkit.getWorld(worldName) == null) {
                 return null;
             }
             cache = new Ore(id);

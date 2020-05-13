@@ -1,22 +1,22 @@
 package com.nannerss.eternalore.tasks;
 
-import java.util.Random;
-
+import com.nannerss.eternalore.EternalOre;
+import com.nannerss.eternalore.data.Ore;
+import com.nannerss.eternalore.data.Settings;
 import com.nannerss.eternalore.lib.Particles;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import com.nannerss.eternalore.EternalOre;
-import com.nannerss.eternalore.data.Ore;
-import com.nannerss.eternalore.data.Settings;
+import java.util.Random;
 
 public class OreRegenTask extends BukkitRunnable {
-    
+
     private static Random r = new Random();
-    
+
     @Override
     public void run() {
         for (Ore cache : EternalOre.getOresCache().asMap().values()) {
@@ -55,23 +55,19 @@ public class OreRegenTask extends BukkitRunnable {
                             break;
                         case "RANDOM_ORE":
                             Material ore = Settings.RANDOM_ORES.get(r.nextInt(Settings.RANDOM_ORES.size()));
-            
+
                             cache.getLocation().getBlock().setType(ore);
                             break;
                     }
-    
+
                     for (Player p : Bukkit.getOnlinePlayers()) {
                         if (!p.getWorld().equals(cache.getLocation().getWorld())) {
                             continue;
                         }
-                        
+
                         if (cache.getLocation().distance(p.getLocation()) <= 100) {
-                            if (!Bukkit.getVersion().contains("1.13") && !Bukkit.getVersion().contains("1.14")) {
-                                Particles.spawnParticle(p, "BLOCK_CRACK", cache.getLocation().getBlockX() + 0.5F, cache.getLocation().getBlockY() + 0.5F, cache.getLocation().getBlockZ() + 0.5F, 0.25F, 0.25F, 0.25F, 0, 100, cache.getLocation().getBlock().getType().getId());
-                            } else {
-                                Particles.spawnParticle(p, "BLOCK_CRACK", cache.getLocation().getBlockX() + 0.5F, cache.getLocation().getBlockY() + 0.5F, cache.getLocation().getBlockZ() + 0.5F, 0.25F, 0.25F, 0.25F, 0, 100, cache.getLocation().getBlock().getBlockData());
-                            }
-    
+                            Particles.spawnParticle(p, Particle.BLOCK_CRACK, cache.getLocation().getBlockX() + 0.5F, cache.getLocation().getBlockY() + 0.5F, cache.getLocation().getBlockZ() + 0.5F, 0.25F, 0.25F, 0.25F, 0, 100, cache.getLocation().getBlock().getBlockData());
+
                             if (Bukkit.getVersion().contains("1.8")) {
                                 p.playSound(cache.getLocation(), Sound.valueOf("DIG_STONE"), 1F, 1F);
                             } else {
@@ -83,21 +79,17 @@ public class OreRegenTask extends BukkitRunnable {
             } else if (Settings.ORES.contains(cache.getLocation().getBlock().getType()) || cache.getLocation().getBlock().getType() == Material.REDSTONE_BLOCK) {
                 if (cache.getType().equals("RANDOM_ORE")) {
                     Material ore = Settings.RANDOM_ORES.get(r.nextInt(Settings.RANDOM_ORES.size()));
-    
+
                     cache.getLocation().getBlock().setType(ore);
-                    
+
                     for (Player p : Bukkit.getOnlinePlayers()) {
                         if (!p.getWorld().equals(cache.getLocation().getWorld())) {
                             continue;
                         }
-                        
+
                         if (cache.getLocation().distance(p.getLocation()) <= 50) {
-                            if (!Bukkit.getVersion().contains("1.13") && !Bukkit.getVersion().contains("1.14")) {
-                                Particles.spawnParticle(p, "BLOCK_CRACK", cache.getLocation().getBlockX() + 0.5F, cache.getLocation().getBlockY() + 0.5F, cache.getLocation().getBlockZ() + 0.5F, 0.25F, 0.25F, 0.25F, 0, 100, cache.getLocation().getBlock().getType().getId());
-                            } else {
-                                Particles.spawnParticle(p, "BLOCK_CRACK", cache.getLocation().getBlockX() + 0.5F, cache.getLocation().getBlockY() + 0.5F, cache.getLocation().getBlockZ() + 0.5F, 0.25F, 0.25F, 0.25F, 0, 100, cache.getLocation().getBlock().getBlockData());
-                            }
-                            
+                            Particles.spawnParticle(p, Particle.BLOCK_CRACK, cache.getLocation().getBlockX() + 0.5F, cache.getLocation().getBlockY() + 0.5F, cache.getLocation().getBlockZ() + 0.5F, 0.25F, 0.25F, 0.25F, 0, 100, cache.getLocation().getBlock().getBlockData());
+
                             if (Bukkit.getVersion().contains("1.8")) {
                                 p.playSound(cache.getLocation(), Sound.valueOf("DIG_STONE"), 1F, 1F);
                             } else {
@@ -109,5 +101,5 @@ public class OreRegenTask extends BukkitRunnable {
             }
         }
     }
-    
+
 }
